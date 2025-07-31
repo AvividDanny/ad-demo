@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>模擬網頁 - 廣告置底示意</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+    header {
+      background: #003366;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    main {
+      padding: 20px;
+      min-height: 600px; /* 模擬內容高度 */
+    }
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #f0f0f0;
+      border-top: 2px solid #ccc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 270px; /* 包含廣告 */
+      box-shadow: 0 -3px 8px rgba(0,0,0,0.2);
+    }
+    #ad-slot {
+      width: 300px;
+      height: 250px;
+      background: #000;
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>模擬新聞網站</h1>
+  </header>
+  <main>
+    <p>這裡是一些文章內容，模擬一個實際的新聞或部落格網站。</p>
+    <p>讀者正在瀏覽文章，廣告會固定出現在畫面底部。</p>
+    <p>你可以滾動頁面，但廣告依然會保持在底部。</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ultricies mi sit amet augue congue, non egestas metus tempor.</p>
+    <p>更多測試文字，讓頁面可以向下滾動，觀察廣告始終固定在底部。</p>
+  </main>
+  <footer>
+    <div id="ad-slot">
+      <iframe src="carousel/index.html" width="300" height="250" frameborder="0"></iframe>
+    </div>
+  </footer>
+</body>
+</html>

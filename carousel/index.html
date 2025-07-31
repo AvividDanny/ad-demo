@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="ad.size" content="width=300,height=250">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Carousel Rich Media (Fixed)</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      width: 300px;
+      height: 250px;
+      overflow: hidden;
+      background: #000;
+    }
+    #carousel {
+      width: 300px;
+      height: 250px;
+      position: relative;
+      perspective: 600px;
+      overflow: hidden;
+    }
+    .slide {
+      width: 70%;
+      height: 80%;
+      position: absolute;
+      top: 10%;
+      left: 15%;
+      background-size: cover;
+      background-position: center;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+      cursor: pointer;
+      opacity: 0.5;
+      transition: transform 0.8s ease, opacity 0.8s ease;
+    }
+    .slide.active {
+      opacity: 1;
+      transform: scale(1) translateX(0) rotateY(0deg);
+      z-index: 3;
+    }
+    .slide.left {
+      transform: scale(0.7) translateX(-140px) rotateY(45deg);
+      z-index: 2;
+    }
+    .slide.right {
+      transform: scale(0.7) translateX(140px) rotateY(-45deg);
+      z-index: 2;
+    }
+    .controls {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .dot {
+      display: inline-block;
+      width: 10px; height: 10px;
+      background: #bbb;
+      border-radius: 50%;
+      margin: 0 3px;
+      cursor: pointer;
+    }
+    .dot.active { background: #ff6600; }
+    .cta {
+      position: absolute;
+      bottom: 15px;
+      right: 15px;
+      background: #ff6600;
+      color: white;
+      padding: 6px 10px;
+      font-size: 14px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      z-index: 5;
+    }
+    .cta:hover { background: #e65500; }
+  </style>
+</head>
+<body>
+  <div id="carousel">
+    <div class="slide" style="background-image:url('slide2.jpg');" data-link="https://www.avividai.com/"');" data-link="https://www.avividai.com/"></div>
+    <div class="slide" style="background-image:url('slide3.jpg');" data-link="https://www.avividai.com/"></div>
+
+    <div class="controls">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+
+    <div class="cta">了解更多</div>
+  </div>
+
+  <script>
+    var slides = document.querySelectorAll(".slide");
+    var dots = document.querySelectorAll(".dot");
+    var current = 0;
+
+    function updateSlides() {
+      slides.forEach((slide, index) => {
+        slide.classList.remove("active", "left", "right");
+        if (index === current) slide.classList.add("active");
+        else if (index === (current - 1 + slides.length) % slides.length) slide.classList.add("left");
+        else if (index === (current + 1) % slides.length) slide.classList.add("right");
+      });
+      dots.forEach((dot, index) => {
+        dot.classList.toggle("active", index === current);
+      });
+    }
+
+    function showSlide(index) {
+      current = (index + slides.length) % slides.length;
+      updateSlides();
+    }
+
+    dots.forEach((dot, index) => {
+      dot.onclick = () => showSlide(index);
+    });
+
+    slides.forEach(slide => {
+      slide.onclick = () => window.open(slide.getAttribute("data-link"), "_blank");
+    });
+
+    document.querySelector(".cta").onclick = () => window.open(slides[current].getAttribute("data-link"), "_blank");
+
+    setInterval(() => { showSlide(current + 1); }, 3000);
+
+    // 初始化，顯示三張
+    updateSlides();
+
+    // 手機觸控滑動
+    var startX = 0;
+    document.getElementById("carousel").addEventListener("touchstart", e => { startX = e.touches[0].clientX; });
+    document.getElementById("carousel").addEventListener("touchend", e => {
+      var endX = e.changedTouches[0].clientX;
+      if (startX - endX > 50) showSlide(current + 1);
+      else if (endX - startX > 50) showSlide(current - 1);
+    });
+  </script>
+</body>
+</html>
