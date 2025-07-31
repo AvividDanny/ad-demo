@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="ad.size" content="width=300,height=250">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>3D Carousel Rich Media (Fixed)</title>
+  <title>6張圖 3D Carousel</title>
   <style>
     body {
       margin: 0;
@@ -13,7 +13,7 @@
       width: 300px;
       height: 250px;
       overflow: hidden;
-      background: #000;
+      background: transparent;
     }
     #carousel {
       width: 300px;
@@ -49,49 +49,54 @@
       transform: scale(0.7) translateX(140px) rotateY(-45deg);
       z-index: 2;
     }
-    .controls {
+    .cta {
       position: absolute;
       bottom: 10px;
+      right: 10px;
+      background: #ff6600;
+      color: white;
+      padding: 5px 8px;
+      font-size: 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      z-index: 6;
+    }
+    .cta:hover { background: #e65500; }
+    .controls {
+      position: absolute;
+      bottom: 5px;
       left: 50%;
       transform: translateX(-50%);
     }
     .dot {
       display: inline-block;
-      width: 10px; height: 10px;
+      width: 8px; height: 8px;
       background: #bbb;
       border-radius: 50%;
       margin: 0 3px;
       cursor: pointer;
     }
     .dot.active { background: #ff6600; }
-    .cta {
-      position: absolute;
-      bottom: 15px;
-      right: 15px;
-      background: #ff6600;
-      color: white;
-      padding: 6px 10px;
-      font-size: 14px;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-      z-index: 5;
-    }
-    .cta:hover { background: #e65500; }
   </style>
 </head>
 <body>
   <div id="carousel">
-    <div class="slide" style="background-image:url('slide2.jpg');" data-link="https://www.avividai.com/"');" data-link="https://www.avividai.com/"></div>
-    <div class="slide" style="background-image:url('slide3.jpg');" data-link="https://www.avividai.com/"></div>
+    <div class="slide" style="background-image:url('slide1.jpg');" data-link="https://www.avividai.com/"><div class="cta">了解更多</div></div>
+    <div class="slide" style="background-image:url('slide2.jpg');" data-link="https://www.avividai.com/"><div class="cta">了解更多</div></div>
+    <div class="slide" style="background-image:url('slide3.jpg');" data-link="https://www.avividai.com/"><div class="cta">了解更多</div></div>
+    <div class="slide" style="background-image:url('slide4.jpg');" data-link="https://www.avividai.com/"><div class="cta">了解更多</div></div>
+    <div class="slide" style="background-image:url('slide5.jpg');" data-link="https://www.avividai.com/"><div class="cta">了解更多</div></div>
+    <div class="slide" style="background-image:url('slide6.jpg');" data-link="https://www.avividai.com/"><div class="cta">了解更多</div></div>
 
     <div class="controls">
       <span class="dot active"></span>
       <span class="dot"></span>
       <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
     </div>
-
-    <div class="cta">了解更多</div>
   </div>
 
   <script>
@@ -121,14 +126,14 @@
     });
 
     slides.forEach(slide => {
+      slide.querySelector(".cta").onclick = (e) => {
+        e.stopPropagation();
+        window.open(slide.getAttribute("data-link"), "_blank");
+      };
       slide.onclick = () => window.open(slide.getAttribute("data-link"), "_blank");
     });
 
-    document.querySelector(".cta").onclick = () => window.open(slides[current].getAttribute("data-link"), "_blank");
-
     setInterval(() => { showSlide(current + 1); }, 3000);
-
-    // 初始化，顯示三張
     updateSlides();
 
     // 手機觸控滑動
