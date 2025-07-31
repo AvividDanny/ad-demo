@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="ad.size" content="width=300,height=250">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>6張圖 3D Carousel</title>
+  <title>6張圖 3D Carousel (整張圖片可點擊)</title>
   <style>
     body {
       margin: 0;
@@ -126,17 +126,16 @@
     });
 
     slides.forEach(slide => {
+      slide.onclick = () => window.open(slide.getAttribute("data-link"), "_blank");
       slide.querySelector(".cta").onclick = (e) => {
         e.stopPropagation();
         window.open(slide.getAttribute("data-link"), "_blank");
       };
-      slide.onclick = () => window.open(slide.getAttribute("data-link"), "_blank");
     });
 
     setInterval(() => { showSlide(current + 1); }, 3000);
     updateSlides();
 
-    // 手機觸控滑動
     var startX = 0;
     document.getElementById("carousel").addEventListener("touchstart", e => { startX = e.touches[0].clientX; });
     document.getElementById("carousel").addEventListener("touchend", e => {

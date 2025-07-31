@@ -5,124 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>模擬新聞網站 - 廣告置底(完整關閉)</title>
   <style>
-    body {
-      margin: 0;
-      font-family: 'Arial', sans-serif;
-      line-height: 1.6;
-      background: #f9f9f9;
-    }
-    header {
-      background: #c62828;
-      color: white;
-      padding: 15px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    }
-    header h1 { margin: 0; font-size: 20px; }
-    nav a {
-      color: white;
-      margin: 0 10px;
-      text-decoration: none;
-      font-size: 14px;
-    }
-    main {
-      display: flex;
-      padding: 20px;
-      margin-bottom: 270px; /* 確保內容不被廣告蓋住 */
-    }
+    body { margin: 0; font-family: Arial, sans-serif; background: #f9f9f9; }
+    header { background: #c62828; color: white; padding: 15px 20px; display: flex; justify-content: space-between; }
+    nav a { color: white; margin: 0 10px; text-decoration: none; }
+    main { display: flex; padding: 20px; margin-bottom: 270px; }
     article { flex: 3; margin-right: 20px; }
-    article h2 { font-size: 22px; margin-bottom: 10px; }
-    article img {
-      max-width: 100%;
-      border-radius: 6px;
-      margin-bottom: 15px;
-    }
-    aside {
-      flex: 1;
-      background: #fff;
-      padding: 15px;
-      border-radius: 6px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-    aside h3 { font-size: 16px; margin-bottom: 10px; }
-    aside ul { list-style: none; padding: 0; }
-    aside li { margin-bottom: 8px; font-size: 14px; }
-    footer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 250px;
-      background: rgba(255,255,255,0.95);
-      border-top: 2px solid #ccc;
-      box-shadow: 0 -3px 8px rgba(0,0,0,0.2);
-    }
-    #ad-slot {
-      width: 300px;
-      height: 250px;
-      position: relative;
-      background: transparent;
-    }
-    .close-btn {
-      position: absolute;
-      top: -10px;
-      right: -10px;
-      background: #ff0000;
-      color: white;
-      border-radius: 50%;
-      width: 24px;
-      height: 24px;
-      line-height: 24px;
-      text-align: center;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: bold;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-      z-index: 10;
-    }
+    aside { flex: 1; background: #fff; padding: 15px; border-radius: 6px; }
+    footer { position: fixed; bottom: 0; left: 0; width: 100%; display: flex; justify-content: center; align-items: center;
+             height: 250px; background: rgba(255,255,255,0.95); border-top: 2px solid #ccc; }
+    #ad-slot { width: 300px; height: 250px; position: relative; background: transparent; }
+    .close-btn { position: absolute; top: -10px; right: -10px; background: red; color: white; border-radius: 50%; width: 24px; height: 24px; line-height: 24px; text-align: center; cursor: pointer; }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Daily News</h1>
-    <nav>
-      <a href="#">即時</a>
-      <a href="#">財經</a>
-      <a href="#">娛樂</a>
-      <a href="#">科技</a>
-    </nav>
-  </header>
+  <header><h1>Daily News</h1><nav><a href="#">即時</a><a href="#">財經</a><a href="#">娛樂</a><a href="#">科技</a></nav></header>
   <main>
-    <article>
-      <h2>AviviD 推出 AI 行銷新方案</h2>
-      <img src="https://via.placeholder.com/600x300" alt="新聞配圖">
-      <p>AviviD 今日宣布推出全新 AI 行銷解決方案，結合 SEO、跨平台數據分析與智慧型廣告投放，
-      協助品牌在數位競爭環境中脫穎而出。專家指出，這項方案將徹底改變廣告投放效率。</p>
-      <p>業界分析認為，該解決方案將幫助企業降低 30% 行銷成本，並提升 50% 的轉換率。
-      預計未來半年內，將有超過百家企業嘗試導入。</p>
-    </article>
-    <aside>
-      <h3>熱門文章</h3>
-      <ul>
-        <li>台灣數位廣告市場再創新高</li>
-        <li>AI 如何影響未來商業決策</li>
-        <li>跨境電商崛起，機會與挑戰</li>
-        <li>數據隱私與廣告科技新趨勢</li>
-      </ul>
-    </aside>
+    <article><h2>AviviD 推出 AI 行銷新方案</h2><p>新聞內文示意...</p></article>
+    <aside><h3>熱門文章</h3><ul><li>數位廣告趨勢</li><li>AI 行銷應用</li></ul></aside>
   </main>
-  <footer>
-    <div id="ad-slot">
-      <div class="close-btn">&times;</div>
-      <iframe src="carousel/index.html" width="300" height="250" frameborder="0"></iframe>
-    </div>
-  </footer>
-
+  <footer><div id="ad-slot"><div class="close-btn">&times;</div><iframe src="carousel/index.html" width="300" height="250" frameborder="0"></iframe></div></footer>
   <script>
     document.querySelector('.close-btn').onclick = function() {
       document.querySelector('footer').style.display = 'none';
