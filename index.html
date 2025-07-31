@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>模擬新聞網站 - 廣告置底(可關閉)</title>
+  <title>模擬新聞網站 - 廣告置底(完整關閉)</title>
   <style>
     body {
       margin: 0;
@@ -57,7 +57,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 250px; /* 與素材一致 */
+      height: 250px;
       background: rgba(255,255,255,0.95);
       border-top: 2px solid #ccc;
       box-shadow: 0 -3px 8px rgba(0,0,0,0.2);
@@ -125,7 +125,7 @@
 
   <script>
     document.querySelector('.close-btn').onclick = function() {
-      document.getElementById('ad-slot').style.display = 'none';
+      document.querySelector('footer').style.display = 'none';
     };
   </script>
 </body>
